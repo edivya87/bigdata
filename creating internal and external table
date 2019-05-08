@@ -1,0 +1,41 @@
+created csv file in local
+vi seventmay.csv
+copied that file to hdfs 
+hdfs:
+created directory may7
+hdfs dfs -mkdir /tmp/may7
+copied seventhmay.csv to hdfs may 7 directory
+hdfs dfs -copyFromLocal seventmay.csv /tmp/may7
+hdfs dfs -cat /tmp/may7/seventmay.csv
+view the content of the file
+1,divya	
+2,krishna
+3,advaith
+In Hive
+create database today7; 
+create internal table below today7 databases
+create table test(id int,name string)row format delimited fields terminated by',';
+load data from hdfs to hive
+ load data inpath '/tmp/may7/seventmay.csv' into table test;
+view the data
+select * from test;
+create external table using today7 databases
+create external table test1(id int,name string)row format delimited fields terminated by ',' location '/tmp/external';
+load data from hdfs to hive
+ load data inpath '/tmp/may7/seventmay.csv' into table test1;
+ semantic exception error will occur again copy the data from local file to hdfs
+ now chk the file select * from test1;
+ desc formatted test;
+ we can chk the location of the internal table whether its created '/user/hive/warehouse/today7.db/test/seventmay.csv'.
+ desc formatted test1;
+ we can chk the location of the external table whether it is created '/tmp/external/seventmay.csv'.
+ if we drop table in hive
+ drop table test;
+ table wont be available in that location
+ drop table test1;
+ table i.e external table will be dropped but it will available in location.
+ 
+ 
+ 
+ 
+ 
