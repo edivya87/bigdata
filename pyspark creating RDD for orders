@@ -6,6 +6,6 @@ hdfs dfs -mkdir /user/cloudera/retail_db (create a directory in hdfs file)
 hdfs dfs -copyFromLocal part-00000-orders /user/cloudera/retail_db (copy the file part-00000-orders to retail_db)
 pyspark (login in pyspark for creating rdd)
 ordersRDD = sc.textFile("/user/cloudera/retail_db/part-00000-orders") (Pull the data from hdfs to pysaprk using  command)
-ordersFilter=ordersRDD.filter(lambda x :(x.split (",")[3] == 'COMPLETE')) (use filter command for gettting complete values)
+ordersFilter=ordersRDD.filter(lambda x :(x.split (",")[3] == "COMPLETE")) (use filter command for gettting complete values)
 for i in ordersFilter.collect() : print i  (collect the values using action command)
 
