@@ -1,0 +1,11 @@
+//count of orders using reducebyKey
+ordersRDD=sc.textfile("/user/cloudera/retail_db/part-00000-orders") 
+ordersMap=ordersRDD.map(lambda x : (x.split(",")[0],x.split(",")[3]))
+ordersMap=ordersRDD.map(lambda x: (int(x.split(",")[0]),x.split(",")[3]))
+ordersMap001=ordersMap.map(lambda x : (x[1],1))
+orderMap001.take(1)
+for i in orderMap001.take(20):print i
+ordersReduce=ordersmap001.reducebyKey(lambda x1,x2 :(x1+x2))
+ordersReduce.take(3)
+for i in ordersReduce.collect() :print i
+ordersReduce.saveAsTextFile("/user/cloudera/retail_db/ordersoutput")
